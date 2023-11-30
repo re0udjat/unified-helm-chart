@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
-  namespace: keycloak
+  namespace: {{ .Release.Name }}
 data:
   KEYCLOAK_ADMIN: "admin"
   KEYCLOAK_ADMIN_PASSWORD: "admin"
