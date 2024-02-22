@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: quay.io/keycloak/keycloak
@@ -84,3 +84,6 @@ affinity: {}
 namespace:
   enabled: true
   value: "iam"
+
+replicaset:
+  revisionHistoryLimit: 3
