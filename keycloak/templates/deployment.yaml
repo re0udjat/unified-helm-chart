@@ -8,7 +8,20 @@ metadata:
   labels:
     app: {{ .Values.fullnameOverride }}
 spec:
+  revisionHistoryLimit: {{ .Values.replicaset.revisionHistoryLimit }}
+  {{- if .Values.rollingUpdate.enabled }}
+  minReadySeconds: {{ .Values.rollingUpdate.minReadySeconds }}
+  {{- end }}
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    {{- if .Values.rollingUpdate.enabled }}
+    type: {{ .Values.rollingUpdate.type }}
+    {{- if eq .Values.rollingUpdate.type "RollingUpdate" }}
+    rollingUpdate:
+      maxSurge: {{ .Values.rollingUpdate.maxSurge }}
+      maxUnavailable: {{ .Values.rollingUpdate.maxUnavailable }}
+    {{- end }}
+    {{- end }}
   selector:
     matchLabels:
       app: {{ .Values.fullnameOverride }}
@@ -37,9 +50,9 @@ spec:
               value: "edge"
           ports:
             - name: http
-              containerPort: 8080
+              containerPort: {{ .Values.service.port }}
           readinessProbe:
+            periodSeconds: 1
             httpGet:
               path: /realms/master
-              port: 8080
-  revisionHistoryLimit: {{ .Values.replicaset.revisionHistoryLimit }}
+              port: {{ .Values.service.port }}
