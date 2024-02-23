@@ -50,9 +50,11 @@ spec:
               value: "edge"
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.httpPort }}
+            - name: https
+              containerPort: {{ .Values.service.httpsPort }}
           readinessProbe:
             periodSeconds: 1
             httpGet:
               path: /realms/master
-              port: {{ .Values.service.port }}
+              port: http
