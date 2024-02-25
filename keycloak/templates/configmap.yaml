@@ -1,0 +1,12 @@
+{{- if .Values.configMap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.fullnameOverride }}-configmap
+  {{- if .Values.namespace.value }}
+  namespace: {{ .Values.namespace.value }}
+  {{- end }}
+data:
+  KEYCLOAK_ADMIN: admin
+  KEYCLOAK_ADMIN_PASSWORD: admin
+{{- end }}
