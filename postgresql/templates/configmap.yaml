@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.fullnameOverride }}-cm
+  {{- if .Values.namespace.enabled }}
+  namespace: {{ .Values.namespace.value }}
+  {{- end }}
+  labels:
+    app: {{ .Values.fullnameOverride }}
+data:
+  POSTGRES_DB: postgresql
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
