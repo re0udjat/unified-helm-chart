@@ -22,7 +22,8 @@ spec:
           image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - name: {{ .Values.service.http.portName }}
+              containerPort: {{ .Values.service.http.port }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.fullnameOverride }}-cm
@@ -31,5 +32,5 @@ spec:
               name: postgresql-data
       volumes:
         - name: postgresql-data
-          persistentVolumeClaim:
-            claimName: {{ .Values.fullnameOverride }}-pvc
+          hostPath:
+            path: /data/postgresql

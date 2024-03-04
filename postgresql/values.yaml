@@ -42,7 +42,10 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 5432
+  http:
+    portName: http
+    portProtocol: TCP
+    port: 5432
 
 ingress:
   enabled: false

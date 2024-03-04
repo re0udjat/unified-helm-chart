@@ -13,4 +13,4 @@ spec:
             storage: 2Gi
     accessModes:
     - ReadWriteOnce
-    storageClassName: ""
+    storageClassName: {{ .Values.fullnameOverride }}-fast-sc

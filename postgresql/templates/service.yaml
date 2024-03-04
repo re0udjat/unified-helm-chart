@@ -10,6 +10,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - protocol: {{ .Values.service.http.portProtocol }}
+      name: {{ .Values.service.http.portName }}
+      port: {{ .Values.service.http.port }}
+      targetPort: {{ .Values.service.http.port }}
   selector:
     app: {{ .Values.fullnameOverride }}
