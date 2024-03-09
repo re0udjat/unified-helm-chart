@@ -39,7 +39,6 @@ securityContext: {}
 service:
   type: ClusterIP
   httpPort: 8080
-  httpsPort: 8443
 
 ingress:
   enabled: false
@@ -82,20 +81,6 @@ tolerations: []
 
 affinity: {}
 
-namespace:
-  enabled: true
-  value: "iam"
-
-replicaset:
-  revisionHistoryLimit: 2
-
-rollingUpdate:
-  enabled: true
-  type: RollingUpdate
-  maxSurge: 1
-  maxUnavailable: 0
-  minReadySeconds: 5
-
-# Configuration for ConfigMap
-configMap:
+# Configmap
+configmap:
   enabled: true
