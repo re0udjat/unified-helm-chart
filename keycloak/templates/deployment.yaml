@@ -29,3 +29,7 @@ spec:
             httpGet:
               path: /realms/master
               port: {{ .Values.service.httpPort }}
+          resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
