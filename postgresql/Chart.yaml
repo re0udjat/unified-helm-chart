@@ -1,6 +1,6 @@
 apiVersion: v2
-name: keycloak
-description: A Helm chart for Keycloak
+name: postgresql
+description: A Helm chart for Postgresql
 
 # A chart can be either an 'application' or a 'library' chart.
 #
